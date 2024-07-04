@@ -18,12 +18,12 @@ def upload_to_airtable(data):
         api = Api(AUTH_TOKEN)
         table = api.table(BASE_ID, TABLE_ID)
         table.create(data)
-        st.success("Data uploaded successfully to Airtable.")
+        st.success(f"Data uploaded successfully to Airtable for {data['name']}")
     except Api.ApiError as e:
-        st.error("Failed to upload data to Airtable. Please check your API credentials and try again.")
+        st.error("Failed to upload data to Airtable.")
         st.error(f"Airtable API error: {e}")
     except Exception as e:
-        st.error("An unexpected error occurred while uploading data to Airtable.")
+        st.error(f"Error uploading data to Airtable for {data['name']} ")
         st.error(f"Error: {e}")
 
 def process_resume(resume_path, drive_location):
